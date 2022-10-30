@@ -1,0 +1,74 @@
+public class RandNum {
+
+	int arry[][] = new int[5][5];
+	int var;
+
+	public RandNum() {
+		for (int i = 0; i < 5; i++) {
+
+			for (int j = 0; j < 5; j++) {
+				arry[i][j] = (int) (Math.random() * 100);
+
+			}
+		}
+
+	}
+
+	public int minimum() {
+		var = arry[0][0];
+
+		for (int i = 0; i < 5; i++) {
+
+			for (int j = 0; j < 5; j++) {
+
+				if (var > arry[i][j]) {
+					var = arry[i][j];
+				}
+			}
+		}
+		return var;
+	}
+
+	public int maximum() {
+
+		var = arry[0][0];
+		for (int i = 0; i < 5; i++) {
+
+			for (int j = 0; j < 5; j++) {
+
+				if (var < arry[i][j]) {
+					var = arry[i][j];
+				}
+			}
+		}
+
+		return var;
+	}
+
+	public double avg() {
+		double tot = 0;
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				tot += arry[i][j];
+			}
+		}
+
+		return tot / 25;
+	}
+
+	public void display() {
+
+		System.out.println("min :" + minimum() + "\nmax : " + maximum() + "\nAvg : " + avg());
+	}
+
+	public static void main(String[] args) {
+
+		RandNum n1 = new RandNum();
+
+		n1.display();
+
+	}
+
+}
+
