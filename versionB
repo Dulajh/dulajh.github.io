@@ -1,0 +1,164 @@
+//Alien class
+package versionB;
+
+public interface Alien {
+
+	public int getScore();
+}
+
+//Alienpack class
+package versionB;
+
+public class AlienPack {
+
+	
+    Alien arr[];
+	
+	public AlienPack(int x) {
+		arr = new Alien[x];
+	}
+	
+	
+	public void addAlien(Alien obj,int y) {
+		 arr[y] = obj;
+		 
+	}
+	
+	
+	    Alien[] getAlien(){
+//		int i = this.getAlien(x);
+		return arr;
+		};
+			
+		
+}
+
+//main class
+
+package versionB;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+    
+		AlienPack Al = new AlienPack(5);
+		Al.addAlien(new MarshmelloAlien(), 0);
+		Al.addAlien(new OgreAlien(), 1);
+		Al.addAlien(new OgreAlien(), 2);
+		Al.addAlien(new SnakeAlien(), 3);
+		Al.addAlien(new MarshmelloAlien(), 4);
+		
+		menlnBlack AgentK = new menlnBlack(Al);
+		AgentK.kill();
+		System.out.println("Your score is "+ AgentK.getScore());
+	}
+
+}
+
+//class MarshmelloAlien
+package versionB;
+
+public class MarshmelloAlien implements Alien {
+	
+	public int getScore() {
+		return 15;
+		
+	}
+	
+	
+}
+
+//class menlnBlack
+package versionB;
+
+public class menlnBlack  {
+	
+	int Score;
+	AlienPack alianpack;
+	
+	menlnBlack(AlienPack obj) {
+		 Score = 0;
+		 alianpack = obj;
+	}
+	
+	
+	public void kill() {
+		Alien arr[] = alianpack.getAlien();
+		for(int i =0 ; i< arr.length; i++ ) {
+			this.Score = this.Score + arr[i].getScore();
+		}
+	}
+
+	public int getScore() {
+		return Score;
+	}
+
+	public void setScore(int score) {
+		Score = score;
+	}
+
+	public AlienPack getAlianpack() {
+		return alianpack;
+	}
+
+	public void setAlianpack(AlienPack alianpack) {
+		this.alianpack = alianpack;
+	}
+	
+	
+}
+ 
+ //class  menlnBlack
+package versionB;
+
+
+import java.util.Random;
+
+
+public class menlnBlack2 extends menlnBlack{
+
+	menlnBlack2(AlienPack obj) {
+		super(obj);
+		Score = 0;
+	}
+	public void kill() {
+		Alien arr[] = alianpack.getAlien();
+		
+		for(int i =0 ; i< arr.length; i++ ) {
+			
+			Random rand = new Random();
+			this.Score = this.Score + arr[i].getScore();
+			
+			if(rand.nextInt()%2 ==1) {
+				this.Score = this.Score - 2;
+			}
+		}
+	}
+	
+
+}
+
+//class OrgeAlien
+package versionB;
+
+public class OgreAlien implements Alien{
+	public int getScore() {
+		return 10;
+	}
+}
+
+//class SnakeAlien
+package versionB;
+
+public class SnakeAlien implements Alien{
+  
+	public int getScore() {
+		return 5;
+	}
+	
+	
+}
+
+
+
+
