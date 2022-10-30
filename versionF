@@ -1,0 +1,96 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class AlarmClock {
+
+	double hour;
+	double minute;
+	double second;
+
+	public AlarmClock() {
+
+	}
+
+	public AlarmClock(double hour, double minute, double second) {
+		hour = 12;
+		minute = 0;
+		second = 0;
+	}
+
+	public void InputAlarm() throws myException {
+		Scanner sc = new Scanner(System.in);
+
+		try {
+			System.out.println("Enter Hour : ");
+			hour = sc.nextDouble();
+
+			if (hour > 12) {
+				throw new myException("Hours can not be greater than 12");
+			}
+
+			System.out.println("Enter Minute : ");
+			minute = sc.nextDouble();
+
+			if (minute > 59) {
+				throw new myException("Minutes can not be greater than 59");
+			}
+
+			System.out.println("Enter Seconds : ");
+			second = sc.nextDouble();
+
+			if (second > 59) {
+				throw new myException("Seconds can not be greater than 59");
+			}
+		} catch (InputMismatchException e) {
+			System.out.println(e);
+		}
+
+	}
+
+	public void ShowAlarm() {
+		System.out.println("Alarm : " + hour + " : " + minute + " : " + second);
+	}
+
+	public void setAlarm(double hour, double minute, double second) {
+		this.hour = hour;
+		this.minute = minute;
+		this.second = second;
+
+		if (hour > 12) {
+			this.hour = 0;
+		}
+		if (minute > 59) {
+			this.minute = 0;
+		}
+		if (second > 59) {
+			this.second = 0;
+		}
+
+	}
+
+}
+
+public class myException extends Exception{
+	
+	myException(String msg)
+	{
+		super(msg);
+	}
+}
+
+
+public class Mymain {
+
+	public static void main(String[] args) throws myException {
+		AlarmClock alarm1 = new AlarmClock();
+		AlarmClock alarm2 = new AlarmClock();
+
+		alarm1.InputAlarm();
+		alarm1.ShowAlarm();
+
+		alarm2.setAlarm(8, 25, 30);
+		alarm2.ShowAlarm();
+	}
+
+}
+
