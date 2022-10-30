@@ -1,0 +1,87 @@
+import java.util.Scanner;
+
+public class Employee {
+
+	private String EmpId;
+	private String name;
+	private String address;
+
+	public Employee() {
+		EmpId = null;
+		name = null;
+		address = null;
+	}
+
+	public void Read() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter Id : ");
+		EmpId = sc.next();
+		System.out.print("Enter Name : ");
+		name = sc.next();
+		System.out.print("Enter Address : ");
+		address = sc.next();
+	}
+
+	public void Print() {
+		System.out.println(
+				"Employee Id :" + this.EmpId + "\nEmployee Name :" + this.name + "\nEmployee Address :" + this.address);
+	}
+
+}
+
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Manager extends Employee{
+	
+	private String Department;
+	private int ProductNo1,ProductNo2,ProductNo3;
+
+	public Manager() {
+		Department = null;
+		ProductNo1 = 0;
+		ProductNo2 = 0;
+		ProductNo3 = 0;		
+	}
+	
+	public void Read() {
+		super.Read();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Enter Department : ");
+		Department = sc.next();
+		
+		try {
+			System.out.print("Enter product 01 :");
+			ProductNo1 = sc.nextInt();
+			
+			System.out.print("Enter product 02 :");
+			ProductNo2 = sc.nextInt();
+			
+			System.out.print("Enter product 03 :");
+			ProductNo3 = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println(e);
+			System.out.println("Invalid input!!");
+		}	
+	}
+	
+	public void Print() {
+		super.Print();
+		
+		System.out.println("Department : "+Department+"\nProduct 01: "+ProductNo1+"\nProduct 02: "+ProductNo2+"\nProduct 03: "+ProductNo3);
+	}
+}
+
+
+public class Mymain {
+	public static void main(String[] args) {
+		Manager m1 = new Manager();
+		
+		m1.Read();
+		System.out.println();
+		m1.Print();
+	}
+
+}
