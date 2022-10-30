@@ -1,0 +1,46 @@
+public class InvalidITNumberException extends Exception {
+
+	public InvalidITNumberException(String str) {
+		super(str);
+	}
+
+}
+
+public class Student {
+	private String StudentId;
+	private String StudentName;
+
+	public Student(String StudentId, String StudentName) {
+		super();
+		this.StudentId = StudentId;
+		this.StudentName = StudentName;
+	}
+
+	public void display() {
+		try {
+
+			if (StudentId.startsWith("IT") && StudentId.length() == 10) {
+
+				throw new InvalidITNumberException(
+						"Student ID id : " + StudentId + "\nStudent Name is : " + StudentName);
+
+			} else {
+
+				throw new InvalidITNumberException("Invalid IT Number");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}
+
+public class demo {
+	public static void main(String[] args) {
+
+		Student st1 = new Student("IT12345678", "Nirmal");
+
+		st1.display();
+	}
+
+}
